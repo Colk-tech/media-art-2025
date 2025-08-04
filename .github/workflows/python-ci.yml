@@ -1,0 +1,33 @@
+---
+name: Python CI
+
+"on":
+  push:
+  workflow_dispatch:
+
+jobs:
+  python-ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          version: "latest"
+          enable-cache: true
+
+      - name: Create venv and install python packages
+        run: |
+          uv sync
+
+      - name: Run mypy Type Checking
+        run: |
+          mypy .
+
+      - name: Run Ruff
+        run: |
+          uv run ruff check ./
+          uv run ruff format --check ./
