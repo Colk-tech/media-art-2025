@@ -14,3 +14,22 @@ dev = [
     "mypy>=1.17.1",
     "ruff>=0.12.7",
 ]
+
+[tool.mypy]
+namespace_packages = true
+strict = true
+disallow_any_unimported = true
+disallow_any_generics = true
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+show_error_codes = true
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "D1"
+]
